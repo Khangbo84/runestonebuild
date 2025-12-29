@@ -3,7 +3,7 @@
     "title": "Con tàu Giáng sinh",
     "desc": "Con tàu Giáng sinh Medieval dành cho dịp lễ,trang trí.Với cấu trúc độc đáo và tông màu tươi sáng giữa màn đêm đông.Đừng bỏ lỡ công trình limited này!",
     "image": "christmas_ship.jpg",
-    "type": "free",
+    "type": "limited_free",
     "theme": "chủ đề giáng sinh",
     "download": "christmas_ship.zip"
   },
@@ -11,8 +11,15 @@
     "title": "Bundle (coming soon)",
     "desc": "Toàn bộ công trình chủ đề",
     "image": "coming_soon.jpg",
-    "type": "bundle",
+    "type": "unlimited_free",
     "theme": "Secret",
     "download": "https://your-shortlink"
-  }
+  },
+  {
+    "title": "Test",
+    "desc": "djjdj",
+    "image": "coming_soon.jpg",
+    "type": "gold_ad",
+    "theme": "sjdnd",
+    "download": ""
 ]
