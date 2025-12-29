@@ -1,18 +1,18 @@
 [
   {
-    "title": "Lâu đài trung cổ",
-    "desc": "Lâu đài medieval cho server RPG.",
-    "image": "images/castle.jpg",
+    "title": "Con tàu Giáng sinh",
+    "desc": "Con tàu Giáng sinh Medieval dành cho dịp lễ,trang trí",
+    "image": "images/christmas/christmas_ship.jpg",
     "type": "free",
-    "theme": "Medieval",
-    "download": "downloads/castle.zip"
+    "theme": "Christmas",
+    "download": "downloads/christmas/christmas_ship.zip"
   },
   {
-    "title": "Bundle Giáng Sinh",
-    "desc": "Toàn bộ công trình chủ đề Christmas.",
-    "image": "images/bundle_christmas.jpg",
+    "title": "Bundle (coming soon)",
+    "desc": "Toàn bộ công trình chủ đề",
+    "image": "images/coming soon.jpg",
     "type": "bundle",
-    "theme": "Christmas",
+    "theme": "Secret",
     "download": "https://your-shortlink"
   }
 ]
