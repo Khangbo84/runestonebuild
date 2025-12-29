@@ -254,6 +254,7 @@
   © 2025 <strong>Runestone</strong> — All builds are handcrafted with magic.
   </footer>
   <script>
+    window.onerror = function(msg, url, line, col, err){ console.error('window.onerror', {msg,url,line,col, stack: err && err.stack}); }; window.addEventListener('unhandledrejection', e=>console.error('unhandledrejection', e.reason && e.reason.stack ? e.reason.stack : e.reason));
 let builds = [];
 
 fetch('builds.json')
