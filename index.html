@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Minecraft Build Showcase</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg:#0f1115;--card:#1b1f2a;--accent:#4caf50;--text:#eaeaf0;--muted:#9aa0b3;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,Segoe UI,Roboto;background:var(--bg);color:var(--text)}
+    header{padding:20px;text-align:center;border-bottom:1px solid #2a2f3d}
+    header h1{margin:0 0 10px}
+    header input{width:100%;max-width:420px;padding:10px 14px;border-radius:10px;border:none;outline:none}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;padding:20px;max-width:1200px;margin:auto}
+    .card{background:var(--card);border-radius:16px;overflow:hidden;cursor:pointer;transition:.2s}
+    .card:hover{transform:translateY(-4px)}
+    .card img{width:100%;height:150px;object-fit:cover}
+    .card-body{padding:12px}
+    .badge{display:inline-block;padding:3px 8px;border-radius:8px;font-size:12px;margin-bottom:6px}
+    .free{background:#2e7d32}
+    .bundle{background:#6a1b9a}.overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:16px}
+.overlay.active{display:flex}
+.popup{background:var(--card);max-width:800px;width:100%;border-radius:18px;overflow:hidden}
+.popup img{width:100%;max-height:360px;object-fit:cover}
+.popup-content{padding:16px}
+.btn{padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600;display:inline-block}
+.download{background:var(--accent);color:#000}
+.close{background:#2a2f3d;color:#fff;cursor:pointer}
+
+@media(max-width:768px){.card img{height:130px}.popup img{max-height:240px}}
+
+  </style>
+</head>
+<body>
+<header>
+  <h1>Minecraft Build Showcase</h1>
+  <input id="search" placeholder="Tìm kiếm công trình...">
+</header><section class="grid" id="grid"></section><div class="overlay" id="overlay" onclick="closePopup(event)">
+  <div class="popup">
+    <img id="popupImage" alt="">
+    <div class="popup-content">
+      <h2 id="popupTitle"></h2>
+      <p id="popupDesc"></p>
+      <a id="popupDownload" class="btn download" target="_blank">Download</a>
+      <div class="btn close" onclick="closePopup()">Đóng</div>
+    </div>
+  </div>
+</div><script>
+let builds = [];
+
+fetch('builds.json')
+  .then(res => res.json())
+  .then(data => {
+    builds = data;
+    render(builds);
+  });
+
+function render(list){
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  list.forEach((b,i)=>{
+    const card = document.createElement('div');
+    card.className='card';
+    card.onclick=()=>openPopup(i);
+    card.innerHTML=`
+      <img src="${b.image}" alt="${b.title}">
+      <div class="card-body">
+        <span class="badge ${b.type}">${b.type.toUpperCase()}</span>
+        <h3>${b.title}</h3>
+        <p>${b.theme}</p>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function openPopup(i){
+  const b = builds[i];
+  popupImage.src=b.image; popupImage.alt=b.title;
+  popupTitle.innerText=b.title;
+  popupDesc.innerText=b.desc;
+  popupDownload.href=b.download;
+  overlay.classList.add('active');
+}
+function closePopup(e){ if(!e||e.target.id==='overlay')overlay.classList.remove('active'); }
+
+document.getElementById('search').addEventListener('input',e=>{
+  const q=e.target.value.toLowerCase();
+  render(builds.filter(b=>b.title.toLowerCase().includes(q)||b.theme.toLowerCase().includes(q)));
+});
+</script>
+</body>
+</html>
