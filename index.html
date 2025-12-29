@@ -192,7 +192,39 @@
     max-height:240px
   }
 }
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .4px;
+}
 
+/* Unlimited Free */
+.badge.unlimited_free {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: #0b2e17;
+}
+
+/* Limited Free */
+.badge.limited_free {
+  background: linear-gradient(135deg, #f1c40f, #f39c12);
+  color: #3b2a00;
+}
+
+/* Bundle */
+.badge.bundle {
+  background: linear-gradient(135deg, #9b59b6, #6c3483);
+  color: #f2e6ff;
+}
+
+/* Gold / Advertisement */
+.badge.gold_ad {
+  background: linear-gradient(135deg, #f5d76e, #d4ac0d);
+  color: #3a2a00;
+  box-shadow: 0 0 10px rgba(245, 215, 110, 0.5);
+}
   </style>
 </head>
 <body>
@@ -238,17 +270,30 @@ function render(list){
     const card = document.createElement('div');
     card.className='card';
     card.onclick=()=>openPopup(i);
-    card.innerHTML=`
-      <img src="${b.image}" alt="${b.title}">
-      <div class="card-body">
-        <span class="badge ${b.type}">${b.type.toUpperCase()}</span>
-        <h3>${b.title}</h3>
-        <p>${b.theme}</p>
-      </div>`;
+    card.innerHTML = `
+  <img src="${b.image}" alt="${b.title}">
+  <div class="card-body">
+    <span class="badge ${b.type}">
+      ${formatType(b.type)}
+    </span>
+    <h3>${b.title}</h3>
+    <p>${b.theme}</p>
+  </div>
+`;
     grid.appendChild(card);
   });
 }
-
+    
+function formatType(type) {
+  const map = {
+    unlimited_free: "UNLIMITED FREE",
+    limited_free: "LIMITED FREE",
+    bundle: "BUNDLE",
+    gold_ad: "GOLD VERSION"
+  };
+  return map[type] || type.toUpperCase();
+    }
+    
 function openPopup(i){
   const b = builds[i];
   popupImage.src=b.image; popupImage.alt=b.title;
