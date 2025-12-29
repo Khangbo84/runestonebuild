@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <title>Minecraft Build Showcase</title>
+  <title>Runestone Build</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
@@ -34,7 +34,8 @@
 </head>
 <body>
 <header>
-  <h1>Minecraft Build Showcase</h1>
+  <h1>Runestone Build</h1>
+  <p>Tải về các công trình holoprint miễn phí ngay!</p>
   <input id="search" placeholder="Tìm kiếm công trình...">
 </header><section class="grid" id="grid"></section><div class="overlay" id="overlay" onclick="closePopup(event)">
   <div class="popup">
@@ -46,7 +47,13 @@
       <div class="btn close" onclick="closePopup()">Đóng</div>
     </div>
   </div>
-</div><script>
+</div>
+  <h1>Câu hỏi thường gặp</h1>
+  <h2>1.Runestone Build là gì?</h2>
+  <p>Trả lời:Runestone Build là một website thuộc K Games Legends,giúp tải các công trình holoprint của chúng tôi một cách hoàn toàn miễn phí và mãi mãi!</p>
+  <h2>2.Holoprint là gì?</h2>
+  <p>Trả lời:Holoprint là một công cụ tạo Addon công trình dựa trên structure,sử dụng armor stand sẽ xuất hiện công trình ảo để xây dựng theo</p>
+  <script>
 let builds = [];
 
 fetch('builds.json')
