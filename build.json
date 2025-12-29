@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Lâu đài trung cổ",
+    "desc": "Lâu đài medieval cho server RPG.",
+    "image": "images/castle.jpg",
+    "type": "free",
+    "theme": "Medieval",
+    "download": "downloads/castle.zip"
+  },
+  {
+    "title": "Bundle Giáng Sinh",
+    "desc": "Toàn bộ công trình chủ đề Christmas.",
+    "image": "images/bundle_christmas.jpg",
+    "type": "bundle",
+    "theme": "Christmas",
+    "download": "https://your-shortlink"
+  }
+]
