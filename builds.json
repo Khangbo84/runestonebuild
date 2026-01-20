@@ -1,26 +1,26 @@
 [
   {
     "title": "Con tàu Giáng sinh",
+    "author": "Khangbo84",
     "desc": "Con tàu Giáng sinh Medieval dành cho dịp lễ,trang trí.Với cấu trúc độc đáo và tông màu tươi sáng giữa màn đêm đông.Đừng bỏ lỡ công trình limited này!",
     "image": "christmas_ship.jpg",
-    "type": "limited_free",
-    "theme": "chủ đề giáng sinh",
+    "type": "official",
     "download": "christmas_ship.zip"
   },
   {
     "title": "Bundle (coming soon)",
+    "author": "Secret",
     "desc": "Toàn bộ công trình chủ đề",
     "image": "coming_soon.jpg",
     "type": "unlimited_free",
-    "theme": "Secret",
     "download": "https://your-shortlink"
   },
   {
     "title": "Test",
+    "author": "bla"
     "desc": "djjdj",
     "image": "coming_soon.jpg",
     "type": "gold_ad",
-    "theme": "sjdnd",
     "download": ""
   }
 ]
