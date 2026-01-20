@@ -225,6 +225,47 @@
   color: #3a2a00;
   box-shadow: 0 0 10px rgba(245, 215, 110, 0.5);
 }
+
+.filters {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.filters select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 14px;
+}
+
+/* OFFICIAL BADGE */
+.badge {
+  display: inline-block;
+  padding: 3px 9px;
+  font-size: 11px;
+  border-radius: 999px;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+.badge.official {
+  background: #abfff2;
+  color: #003a33;
+}
+.author {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 4px 0 6px;
+}
+
+.desc {
+  font-size: 14px;
+  color: #d6d8e6;
+  line-height: 1.4;
+}
   </style>
 </head>
 <body>
@@ -232,6 +273,19 @@
   <h1>Runestone Build</h1>
   <p>Tải về các công trình holoprint miễn phí!</p>
   <input id="search" placeholder="Tìm kiếm công trình...">
+  <div class="filters">
+  <select id="typeFilter">
+    <option value="all">All Types</option>
+    <option value="free">Free</option>
+    <option value="bundle">Bundle</option>
+    <option value="gold_ad">Gold / Ads</option>
+  </select>
+
+  <select id="badgeFilter">
+    <option value="all">All Badges</option>
+    <option value="official">Official</option>
+  </select>
+  </div>
 </header><section class="grid" id="grid"></section><div class="overlay" id="overlay" onclick="closePopup(event)">
   <div class="popup">
     <img id="popupImage" alt="">
@@ -281,8 +335,12 @@ function render(list){
     <span class="badge ${b.type}">
       ${formatType(b.type)}
     </span>
-    <h3>${b.title}</h3>
-    <p>${b.theme}</p>
+    <h3>
+  ${b.title}
+<p class="author">by ${b.author}</p>
+<p class="desc">${b.desc}</p>
+  ${b.badge === "official" ? `<span class="badge official">OFFICIAL</span>` : ""}
+</h3>
   </div>
 `;
     grid.appendChild(card);
@@ -309,10 +367,44 @@ function openPopup(i){
 }
 function closePopup(e){ if(!e||e.target.id==='overlay')overlay.classList.remove('active'); }
 
-document.getElementById('search').addEventListener('input',e=>{
-  const q=e.target.value.toLowerCase();
-  render(builds.filter(b=>b.title.toLowerCase().includes(q)||b.theme.toLowerCase().includes(q)));
-});
+const searchInput = document.getElementById("search");
+const typeFilter  = document.getElementById("typeFilter");
+const badgeFilter = document.getElementById("badgeFilter");
+
+function applyFilter() {
+  const q = searchInput.value.toLowerCase();
+  const typeValue  = typeFilter ? typeFilter.value : "all";
+  const badgeValue = badgeFilter ? badgeFilter.value : "all";
+
+  const filtered = builds.filter(b => {
+    const textMatch =
+      b.title.toLowerCase().includes(q) ||
+      (b.desc && b.desc.toLowerCase().includes(q)) ||
+      (b.author && b.author.toLowerCase().includes(q)) ||
+      (b.theme && b.theme.toLowerCase().includes(q));
+
+    const typeMatch =
+      typeValue === "all" || b.type === typeValue;
+
+    const badgeMatch =
+      badgeValue === "all" || b.badge === badgeValue;
+
+    return textMatch && typeMatch && badgeMatch;
+  });
+
+  render(filtered);
+}
+
+/* Events */
+searchInput.addEventListener("input", applyFilter);
+
+if (typeFilter) {
+  typeFilter.addEventListener("change", applyFilter);
+}
+
+if (badgeFilter) {
+  badgeFilter.addEventListener("change", applyFilter);
+}
 </script>
 </body>
 </html>
